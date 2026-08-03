@@ -1,0 +1,14 @@
+{
+  "name": "kumenya-mucii-rsvp",
+  "version": "1.0.0",
+  "description": "RSVP attendance counter for Kumenya Mucii — Njeri & Mburu (26th September 2026, Nyayo Estate, Embakasi). Static frontend + Netlify Functions with Firebase Realtime Database, email and WhatsApp notifications.",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@netlify/functions": "^2.8.2",
+    "firebase-admin": "^12.7.0",
+    "nodemailer": "^6.9.16"
+  }
+}

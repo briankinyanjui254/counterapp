@@ -1,0 +1,12 @@
+# Netlify configuration — Kumenya Mucii RSVP
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Scheduled daily summary — 17:00 UTC = 20:00 EAT (8 PM Nairobi time)
+[functions."daily-summary"]
+  schedule = "0 17 * * *"
