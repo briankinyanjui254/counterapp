@@ -9,7 +9,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
 
   <!-- Firebase (compat SDK for simplicity) -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -17,12 +17,16 @@
 
   <style>
     :root {
-      --brown: #4A1E0A;
-      --brown-soft: #6B3316;
-      --parchment: #F2E6CC;
-      --gold: #A0722A;
-      --gold-light: #C89B4E;
-      --ivory: #F5EAD0;
+      --brown: #4E2E1E;          /* deep chocolate (invitation arch) */
+      --brown-deep: #3A2114;     /* darker chocolate */
+      --brown-soft: #6B4530;     /* softer brown for body text */
+      --parchment: #F1E7D4;      /* warm linen background */
+      --ivory: #F5EAD0;          /* ivory text on brown */
+      --gold: #A0722A;           /* antique gold */
+      --gold-light: #C09A5E;     /* light bronze */
+      --rose: #C9907E;           /* dusty rose */
+      --rose-soft: #DBA99A;      /* pale dusty rose */
+      --sage: #A8A084;           /* muted sage leaf */
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,25 +41,28 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      /* Subtle parchment texture via layered gradients */
+      /* Subtle linen/parchment texture via layered gradients */
       background-image:
-        radial-gradient(ellipse at 20% 10%, rgba(160, 114, 42, 0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 90%, rgba(74, 30, 10, 0.06) 0%, transparent 50%),
-        radial-gradient(ellipse at 60% 40%, rgba(200, 155, 78, 0.05) 0%, transparent 60%);
+        radial-gradient(ellipse at 15% 8%, rgba(201, 144, 126, 0.10) 0%, transparent 45%),
+        radial-gradient(ellipse at 88% 92%, rgba(201, 144, 126, 0.10) 0%, transparent 45%),
+        radial-gradient(ellipse at 80% 15%, rgba(160, 114, 42, 0.07) 0%, transparent 50%),
+        radial-gradient(ellipse at 25% 85%, rgba(78, 46, 30, 0.05) 0%, transparent 55%),
+        repeating-linear-gradient(0deg, transparent 0 3px, rgba(78,46,30,0.012) 3px 4px),
+        repeating-linear-gradient(90deg, transparent 0 3px, rgba(78,46,30,0.012) 3px 4px);
     }
 
     /* ============ Tribal geometric top & bottom borders ============ */
     .tribal-border {
       width: 100%;
-      height: 26px;
-      background-color: var(--brown);
+      height: 24px;
+      background-color: var(--brown-deep);
       background-image:
         linear-gradient(135deg, var(--gold) 25%, transparent 25%),
         linear-gradient(225deg, var(--gold) 25%, transparent 25%),
         linear-gradient(45deg, var(--gold) 25%, transparent 25%),
         linear-gradient(315deg, var(--gold) 25%, transparent 25%);
-      background-position: 13px 0, 13px 0, 0 0, 0 0;
-      background-size: 26px 26px;
+      background-position: 12px 0, 12px 0, 0 0, 0 0;
+      background-size: 24px 24px;
       background-repeat: repeat-x;
       flex-shrink: 0;
     }
@@ -63,16 +70,16 @@
 
     .thin-gold-line {
       width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--rose-soft), var(--gold-light), var(--gold));
       flex-shrink: 0;
     }
 
     /* ============ Main card ============ */
     .wrapper {
       width: 100%;
-      max-width: 680px;
-      padding: 28px 18px 40px;
+      max-width: 620px;
+      padding: 26px 16px 40px;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -81,107 +88,190 @@
 
     .card {
       width: 100%;
-      background: var(--ivory);
-      border: 2px solid var(--gold);
-      border-radius: 14px;
-      box-shadow: 0 14px 44px rgba(74, 30, 10, 0.22);
+      background: linear-gradient(180deg, #F4EBDA 0%, var(--parchment) 40%, #EFE3CC 100%);
+      border: 1px solid rgba(160, 114, 42, 0.55);
+      border-radius: 10px;
+      box-shadow: 0 16px 48px rgba(58, 33, 20, 0.25);
       position: relative;
       overflow: hidden;
-      padding: 44px 26px 48px;
+      padding: 40px 24px 44px;
       text-align: center;
     }
 
-    /* inner double frame */
+    /* inner double frame with tribal dash pattern */
     .card::before {
       content: '';
       position: absolute;
-      inset: 10px;
-      border: 1px solid rgba(160, 114, 42, 0.5);
-      border-radius: 9px;
+      inset: 9px;
+      border: 1px dashed rgba(122, 82, 43, 0.55);
+      border-radius: 6px;
+      pointer-events: none;
+    }
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(160, 114, 42, 0.35);
+      border-radius: 4px;
       pointer-events: none;
     }
 
-    /* corner decorations (geometric triangles) */
-    .corner {
+    /* dusty-rose floral corner accents (like the invitation) */
+    .floral {
       position: absolute;
-      width: 54px;
-      height: 54px;
       pointer-events: none;
-      opacity: 0.85;
+      opacity: 0.9;
+      z-index: 1;
     }
-    .corner.tl { top: 14px; left: 14px; }
-    .corner.tr { top: 14px; right: 14px; transform: scaleX(-1); }
-    .corner.bl { bottom: 14px; left: 14px; transform: scaleY(-1); }
-    .corner.br { bottom: 14px; right: 14px; transform: scale(-1); }
+    .floral.tl { top: -6px; left: -8px; }
+    .floral.br { bottom: -6px; right: -8px; transform: rotate(180deg); }
+
+    .content { position: relative; z-index: 2; }
 
     .kicker {
       font-family: 'Lato', sans-serif;
       font-weight: 700;
-      font-size: 0.78rem;
-      letter-spacing: 0.34em;
+      font-size: 0.72rem;
+      letter-spacing: 0.38em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 12px;
+      color: var(--brown-soft);
+      margin-bottom: 18px;
     }
 
-    h1 {
+    /* ============ Chocolate arch panel (like the invitation) ============ */
+    .arch {
+      position: relative;
+      margin: 0 auto;
+      max-width: 440px;
+      background: linear-gradient(180deg, #573726 0%, var(--brown) 30%, var(--brown-deep) 100%);
+      border-radius: 220px 220px 16px 16px;
+      padding: 54px 26px 34px;
+      box-shadow: 0 12px 34px rgba(58, 33, 20, 0.35), inset 0 0 0 1px rgba(192, 154, 94, 0.25);
+    }
+    /* dotted gold outline just inside the arch edge */
+    .arch::before {
+      content: '';
+      position: absolute;
+      inset: 9px;
+      border: 1.5px dotted rgba(192, 154, 94, 0.65);
+      border-radius: 210px 210px 12px 12px;
+      pointer-events: none;
+    }
+
+    .arch h1 {
+      font-family: 'Great Vibes', cursive;
+      font-weight: 400;
+      font-size: clamp(3rem, 11vw, 4.2rem);
+      line-height: 0.95;
+      color: var(--ivory);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.25);
+      margin-bottom: 4px;
+    }
+
+    .arch .ceremony {
       font-family: 'Playfair Display', Georgia, serif;
-      font-weight: 800;
-      font-size: clamp(2.1rem, 6.5vw, 3.1rem);
-      line-height: 1.12;
-      color: var(--brown);
+      font-size: 1.02rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--rose-soft);
       margin-bottom: 6px;
     }
 
-    .names {
+    .arch-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 12px auto 22px;
+      opacity: 0.9;
+    }
+    .arch-divider .line {
+      width: 64px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-light));
+    }
+    .arch-divider .line.right {
+      background: linear-gradient(90deg, var(--gold-light), transparent);
+    }
+
+    /* Photo in gold beaded circular frame */
+    .photo-ring {
+      width: min(66vw, 250px);
+      height: min(66vw, 250px);
+      margin: 0 auto 24px;
+      border-radius: 50%;
+      padding: 7px;
+      border: 2px dotted var(--gold-light);
+      background: radial-gradient(circle, rgba(192,154,94,0.16), transparent 70%);
+    }
+    .photo-frame {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 3px solid var(--gold-light);
+      box-shadow: 0 0 0 1px rgba(58,33,20,0.6), 0 8px 24px rgba(0,0,0,0.35);
+      overflow: hidden;
+    }
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .arch .event-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      align-items: flex-start;
+      width: fit-content;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .arch .row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ivory);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.02rem, 3.6vw, 1.18rem);
+    }
+    .arch .row .icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--rose);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    /* tribal arrows divider inside arch bottom */
+    .tribal-arrows {
+      margin: 22px auto 2px;
+      opacity: 0.95;
+    }
+
+    /* ============ Invitation message ============ */
+    .invite-msg {
       font-family: 'Playfair Display', Georgia, serif;
       font-style: italic;
-      font-size: clamp(1.25rem, 4vw, 1.65rem);
-      color: var(--gold);
-      margin-bottom: 22px;
-    }
-
-    .divider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      margin: 18px auto 22px;
-    }
-    .divider .line {
-      width: 74px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold));
-    }
-    .divider .line.right {
-      background: linear-gradient(90deg, var(--gold), transparent);
-    }
-
-    .event-details {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px 26px;
-      margin-bottom: 8px;
-      font-size: 1.02rem;
-    }
-    .event-details .detail {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      font-size: clamp(0.98rem, 3.4vw, 1.08rem);
+      line-height: 1.65;
       color: var(--brown-soft);
-      font-weight: 400;
+      max-width: 420px;
+      margin: 28px auto 0;
     }
-    .event-details .detail strong { font-weight: 700; color: var(--brown); }
-    .event-details svg { flex-shrink: 0; }
 
     /* ============ Counter ============ */
     .counter-block {
-      margin: 34px auto 30px;
-      padding: 26px 20px 30px;
-      max-width: 420px;
-      background: linear-gradient(180deg, rgba(160,114,42,0.10), rgba(160,114,42,0.04));
-      border: 1px solid rgba(160, 114, 42, 0.4);
+      margin: 28px auto 28px;
+      padding: 24px 20px 28px;
+      max-width: 400px;
+      background: linear-gradient(180deg, rgba(160,114,42,0.10), rgba(201,144,126,0.07));
+      border: 1px solid rgba(160, 114, 42, 0.45);
       border-radius: 12px;
       position: relative;
     }
@@ -190,18 +280,18 @@
       content: '◆';
       position: absolute;
       top: -11px;
-      color: var(--gold);
-      background: var(--ivory);
+      color: var(--rose);
+      background: var(--parchment);
       padding: 0 6px;
       font-size: 0.85rem;
     }
-    .counter-block::before { left: 22px; }
-    .counter-block::after { right: 22px; }
+    .counter-block::before { left: 20px; }
+    .counter-block::after { right: 20px; }
 
     .counter-number {
       font-family: 'Playfair Display', Georgia, serif;
       font-weight: 800;
-      font-size: clamp(3.4rem, 12vw, 5rem);
+      font-size: clamp(3.2rem, 12vw, 4.6rem);
       line-height: 1;
       color: var(--brown);
       transition: transform 0.25s ease;
@@ -215,7 +305,7 @@
 
     .counter-label {
       margin-top: 8px;
-      font-size: 1.02rem;
+      font-size: 1rem;
       letter-spacing: 0.02em;
       color: var(--brown-soft);
     }
@@ -225,21 +315,22 @@
     .rsvp-btn {
       font-family: 'Lato', sans-serif;
       font-weight: 700;
-      font-size: 1.18rem;
+      font-size: 1.16rem;
       letter-spacing: 0.03em;
       color: var(--ivory);
-      background: linear-gradient(180deg, var(--brown-soft), var(--brown));
-      border: 2px solid var(--gold);
+      background: linear-gradient(180deg, #5E3A26, var(--brown-deep));
+      border: 2px solid var(--gold-light);
       border-radius: 60px;
       padding: 18px 46px;
       cursor: pointer;
-      box-shadow: 0 8px 22px rgba(74, 30, 10, 0.35), inset 0 1px 0 rgba(245, 234, 208, 0.18);
+      box-shadow: 0 8px 22px rgba(58, 33, 20, 0.4), inset 0 1px 0 rgba(245, 234, 208, 0.15);
       transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.25s ease;
       -webkit-tap-highlight-color: transparent;
     }
     .rsvp-btn:hover:not(:disabled) {
       transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(74, 30, 10, 0.42), inset 0 1px 0 rgba(245, 234, 208, 0.18);
+      background: linear-gradient(180deg, #6B4530, var(--brown));
+      box-shadow: 0 12px 30px rgba(58, 33, 20, 0.48), inset 0 1px 0 rgba(245, 234, 208, 0.15);
     }
     .rsvp-btn:active:not(:disabled) { transform: translateY(0); }
     .rsvp-btn:disabled {
@@ -251,7 +342,7 @@
     }
     .rsvp-btn.confirmed {
       background: linear-gradient(180deg, var(--gold-light), var(--gold));
-      color: var(--brown);
+      color: var(--brown-deep);
       border-color: var(--brown);
       opacity: 1;
     }
@@ -261,8 +352,8 @@
       margin-top: 20px;
       font-family: 'Playfair Display', Georgia, serif;
       font-style: italic;
-      font-size: 1.15rem;
-      color: var(--gold);
+      font-size: 1.12rem;
+      color: var(--rose);
       opacity: 0;
       transform: translateY(8px);
       transition: opacity 0.6s ease, transform 0.6s ease;
@@ -278,31 +369,40 @@
     }
     .error-msg.show { display: block; }
 
-    /* ============ Decorative SVG rows ============ */
+    /* ============ Couple names script signature ============ */
+    .names-script {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.2rem, 8vw, 3rem);
+      color: var(--brown);
+      margin-top: 26px;
+      line-height: 1.1;
+    }
+
     .deco-row {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 18px;
-      margin: 26px 0 4px;
+      gap: 16px;
+      margin: 14px 0 0;
       opacity: 0.9;
     }
 
     footer {
-      margin-top: 26px;
+      margin-top: 24px;
       text-align: center;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       color: var(--brown-soft);
       opacity: 0.8;
       padding: 0 16px;
     }
-    footer .heart { color: var(--gold); }
+    footer .heart { color: var(--rose); }
 
     @media (max-width: 480px) {
-      .card { padding: 38px 16px 40px; }
-      .corner { width: 40px; height: 40px; }
+      .card { padding: 34px 14px 38px; }
+      .arch { padding: 44px 18px 28px; border-radius: 180px 180px 14px 14px; }
+      .arch::before { border-radius: 172px 172px 10px 10px; }
       .rsvp-btn { width: 100%; max-width: 340px; padding: 17px 20px; }
-      .event-details { flex-direction: column; gap: 8px; }
+      .floral svg { width: 110px; height: 110px; }
     }
   </style>
 </head>
@@ -314,92 +414,138 @@
   <div class="wrapper">
     <div class="card">
 
-      <!-- Geometric corner ornaments -->
-      <svg class="corner tl" viewBox="0 0 60 60" aria-hidden="true">
-        <path d="M0 0 L60 0 L60 8 L8 8 L8 60 L0 60 Z" fill="#A0722A"/>
-        <path d="M14 14 L34 14 L14 34 Z" fill="#4A1E0A" opacity="0.6"/>
-        <circle cx="22" cy="22" r="3" fill="#F5EAD0"/>
+      <!-- Dusty-rose watercolor-style floral corners (like the invitation) -->
+      <svg class="floral tl" width="150" height="150" viewBox="0 0 150 150" aria-hidden="true">
+        <g opacity="0.85">
+          <circle cx="42" cy="40" r="21" fill="#DBA99A"/>
+          <circle cx="42" cy="40" r="14" fill="#C9907E"/>
+          <circle cx="42" cy="40" r="7.5" fill="#B77A67"/>
+          <circle cx="42" cy="40" r="3" fill="#A5695A"/>
+          <circle cx="80" cy="22" r="13" fill="#DBA99A"/>
+          <circle cx="80" cy="22" r="8" fill="#C9907E"/>
+          <circle cx="80" cy="22" r="3.4" fill="#B77A67"/>
+          <circle cx="18" cy="76" r="11" fill="#E4BCAE"/>
+          <circle cx="18" cy="76" r="6.5" fill="#D3A090"/>
+          <circle cx="18" cy="76" r="2.6" fill="#C9907E"/>
+          <path d="M60 58 Q78 66 88 88" stroke="#A8A084" stroke-width="2" fill="none"/>
+          <path d="M66 62 Q60 74 47 78" stroke="#A8A084" stroke-width="1.6" fill="none"/>
+          <ellipse cx="72" cy="70" rx="9" ry="4" fill="#B4AC90" transform="rotate(38 72 70)"/>
+          <ellipse cx="56" cy="74" rx="8" ry="3.6" fill="#A8A084" transform="rotate(-24 56 74)"/>
+          <ellipse cx="86" cy="84" rx="8.5" ry="3.6" fill="#B4AC90" transform="rotate(52 86 84)"/>
+          <ellipse cx="98" cy="34" rx="7" ry="3" fill="#A8A084" transform="rotate(-40 98 34)"/>
+        </g>
       </svg>
-      <svg class="corner tr" viewBox="0 0 60 60" aria-hidden="true">
-        <path d="M0 0 L60 0 L60 8 L8 8 L8 60 L0 60 Z" fill="#A0722A"/>
-        <path d="M14 14 L34 14 L14 34 Z" fill="#4A1E0A" opacity="0.6"/>
-        <circle cx="22" cy="22" r="3" fill="#F5EAD0"/>
+      <svg class="floral br" width="150" height="150" viewBox="0 0 150 150" aria-hidden="true">
+        <g opacity="0.85">
+          <circle cx="42" cy="40" r="21" fill="#DBA99A"/>
+          <circle cx="42" cy="40" r="14" fill="#C9907E"/>
+          <circle cx="42" cy="40" r="7.5" fill="#B77A67"/>
+          <circle cx="42" cy="40" r="3" fill="#A5695A"/>
+          <circle cx="80" cy="22" r="13" fill="#DBA99A"/>
+          <circle cx="80" cy="22" r="8" fill="#C9907E"/>
+          <circle cx="80" cy="22" r="3.4" fill="#B77A67"/>
+          <circle cx="18" cy="76" r="11" fill="#E4BCAE"/>
+          <circle cx="18" cy="76" r="6.5" fill="#D3A090"/>
+          <circle cx="18" cy="76" r="2.6" fill="#C9907E"/>
+          <path d="M60 58 Q78 66 88 88" stroke="#A8A084" stroke-width="2" fill="none"/>
+          <path d="M66 62 Q60 74 47 78" stroke="#A8A084" stroke-width="1.6" fill="none"/>
+          <ellipse cx="72" cy="70" rx="9" ry="4" fill="#B4AC90" transform="rotate(38 72 70)"/>
+          <ellipse cx="56" cy="74" rx="8" ry="3.6" fill="#A8A084" transform="rotate(-24 56 74)"/>
+          <ellipse cx="86" cy="84" rx="8.5" ry="3.6" fill="#B4AC90" transform="rotate(52 86 84)"/>
+          <ellipse cx="98" cy="34" rx="7" ry="3" fill="#A8A084" transform="rotate(-40 98 34)"/>
+        </g>
       </svg>
-      <svg class="corner bl" viewBox="0 0 60 60" aria-hidden="true">
-        <path d="M0 0 L60 0 L60 8 L8 8 L8 60 L0 60 Z" fill="#A0722A"/>
-        <path d="M14 14 L34 14 L14 34 Z" fill="#4A1E0A" opacity="0.6"/>
-        <circle cx="22" cy="22" r="3" fill="#F5EAD0"/>
-      </svg>
-      <svg class="corner br" viewBox="0 0 60 60" aria-hidden="true">
-        <path d="M0 0 L60 0 L60 8 L8 8 L8 60 L0 60 Z" fill="#A0722A"/>
-        <path d="M14 14 L34 14 L14 34 Z" fill="#4A1E0A" opacity="0.6"/>
-        <circle cx="22" cy="22" r="3" fill="#F5EAD0"/>
-      </svg>
 
-      <!-- Calabash + cowrie decorative row -->
-      <div class="deco-row" aria-hidden="true" style="margin-top:0;">
-        <!-- Cowrie shell -->
-        <svg width="34" height="24" viewBox="0 0 34 24">
-          <ellipse cx="17" cy="12" rx="15" ry="10.5" fill="#F5EAD0" stroke="#A0722A" stroke-width="1.6"/>
-          <path d="M7 12 Q17 8 27 12" stroke="#4A1E0A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <path d="M9.5 12 L10.5 14 M12.5 11 L13.5 13.4 M15.5 10.6 L16.5 13 M18.5 10.6 L19.5 13 M21.5 11 L22.5 13.4 M24.5 12 L25 13.8" stroke="#4A1E0A" stroke-width="1.1" stroke-linecap="round"/>
-        </svg>
-        <!-- Calabash gourd -->
-        <svg width="30" height="42" viewBox="0 0 30 42">
-          <path d="M15 1 C13 1 12.2 3 12.6 5.6 C12.9 7.6 12.4 9.4 11 11 C6.5 15.5 3 20 3 27 C3 35 8.4 41 15 41 C21.6 41 27 35 27 27 C27 20 23.5 15.5 19 11 C17.6 9.4 17.1 7.6 17.4 5.6 C17.8 3 17 1 15 1 Z" fill="#A0722A" stroke="#4A1E0A" stroke-width="1.4"/>
-          <path d="M8 26 Q15 22 22 26" stroke="#F5EAD0" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-          <path d="M9 30 Q15 27 21 30" stroke="#F5EAD0" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.8"/>
-          <path d="M12 34 L13.4 32 L14.8 34 L16.2 32 L17.6 34" stroke="#4A1E0A" stroke-width="1.1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <!-- Cowrie shell -->
-        <svg width="34" height="24" viewBox="0 0 34 24">
-          <ellipse cx="17" cy="12" rx="15" ry="10.5" fill="#F5EAD0" stroke="#A0722A" stroke-width="1.6"/>
-          <path d="M7 12 Q17 8 27 12" stroke="#4A1E0A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <path d="M9.5 12 L10.5 14 M12.5 11 L13.5 13.4 M15.5 10.6 L16.5 13 M18.5 10.6 L19.5 13 M21.5 11 L22.5 13.4 M24.5 12 L25 13.8" stroke="#4A1E0A" stroke-width="1.1" stroke-linecap="round"/>
-        </svg>
-      </div>
+      <div class="content">
 
-      <p class="kicker">You Are Warmly Invited</p>
-      <h1>Kumenya Mucii</h1>
-      <p class="names">Njeri &amp; Mburu</p>
+        <p class="kicker">You Are Warmly Invited To</p>
 
-      <div class="divider" aria-hidden="true">
-        <span class="line"></span>
-        <!-- small cowrie divider mark -->
-        <svg width="22" height="15" viewBox="0 0 34 24">
-          <ellipse cx="17" cy="12" rx="15" ry="10.5" fill="none" stroke="#A0722A" stroke-width="2"/>
-          <path d="M7 12 Q17 8 27 12" stroke="#A0722A" stroke-width="2" fill="none" stroke-linecap="round"/>
-        </svg>
-        <span class="line right"></span>
-      </div>
+        <!-- ======= Chocolate arch (mirrors the invitation) ======= -->
+        <div class="arch">
+          <h1>Kumenya Mucii</h1>
+          <p class="ceremony">Ceremony</p>
 
-      <div class="event-details">
-        <span class="detail">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#A0722A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          <span><strong>Saturday, 26th September 2026</strong></span>
-        </span>
-        <span class="detail">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#A0722A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span><strong>Nyayo Estate, Embakasi</strong></span>
-        </span>
-      </div>
+          <div class="arch-divider" aria-hidden="true">
+            <span class="line"></span>
+            <svg width="20" height="14" viewBox="0 0 34 24">
+              <ellipse cx="17" cy="12" rx="15" ry="10.5" fill="none" stroke="#C09A5E" stroke-width="2"/>
+              <path d="M7 12 Q17 8 27 12" stroke="#C09A5E" stroke-width="2" fill="none" stroke-linecap="round"/>
+            </svg>
+            <span class="line right"></span>
+          </div>
 
-      <div class="counter-block">
-        <div class="counter-number" id="counter" aria-live="polite">—</div>
-        <div class="counter-label"><strong>people</strong> have confirmed attendance</div>
-      </div>
+          <!-- Couple photo in gold beaded ring -->
+          <div class="photo-ring">
+            <div class="photo-frame">
+              <img src="couple.jpg" alt="Njeri and Mburu" loading="eager" />
+            </div>
+          </div>
 
-      <button class="rsvp-btn" id="rsvpBtn" disabled>Loading…</button>
-      <p class="thankyou" id="thankyou"></p>
-      <p class="error-msg" id="errorMsg"></p>
+          <div class="event-rows">
+            <div class="row">
+              <span class="icon" aria-hidden="true">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F5EAD0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </span>
+              <span>Saturday,<br/>26th September 2026</span>
+            </div>
+            <div class="row">
+              <span class="icon" aria-hidden="true">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F5EAD0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
+              <span>Nyayo Estate,<br/>Embakasi</span>
+            </div>
+          </div>
 
-      <!-- bottom decorative row -->
-      <div class="deco-row" aria-hidden="true">
-        <svg width="120" height="14" viewBox="0 0 120 14">
-          <path d="M0 7 L10 1 L20 7 L30 1 L40 7 L50 1 L60 7 L70 1 L80 7 L90 1 L100 7 L110 1 L120 7" stroke="#A0722A" stroke-width="1.6" fill="none"/>
-          <path d="M0 7 L10 13 L20 7 L30 13 L40 7 L50 13 L60 7 L70 13 L80 7 L90 13 L100 7 L110 13 L120 7" stroke="#4A1E0A" stroke-width="1.2" fill="none" opacity="0.55"/>
-        </svg>
-      </div>
+          <!-- tribal arrow divider -->
+          <svg class="tribal-arrows" width="200" height="16" viewBox="0 0 200 16" aria-hidden="true">
+            <g stroke="#C9907E" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M30 3 L38 8 L30 13 M42 3 L50 8 L42 13 M54 3 L62 8 L54 13"/>
+              <rect x="92" y="2" width="12" height="12" transform="rotate(45 98 8)" stroke="#C09A5E"/>
+              <path d="M170 3 L162 8 L170 13 M158 3 L150 8 L158 13 M146 3 L138 8 L146 13"/>
+            </g>
+            <circle cx="98" cy="8" r="2" fill="#C9907E"/>
+          </svg>
+        </div>
+
+        <!-- ======= Warm invitation message ======= -->
+        <p class="invite-msg">
+          Dear Friends and Family, join us as we celebrate the beautiful union of
+          Njeri &amp; Mburu. Your presence and blessings mean everything to us.
+        </p>
+
+        <!-- ======= Live counter ======= -->
+        <div class="counter-block">
+          <div class="counter-number" id="counter" aria-live="polite">—</div>
+          <div class="counter-label"><strong>people</strong> have confirmed attendance</div>
+        </div>
+
+        <button class="rsvp-btn" id="rsvpBtn" disabled>Loading…</button>
+        <p class="thankyou" id="thankyou"></p>
+        <p class="error-msg" id="errorMsg"></p>
+
+        <!-- Script signature like the invitation -->
+        <div class="names-script">Njeri &amp; Mburu</div>
+
+        <!-- cowrie shells decorative row -->
+        <div class="deco-row" aria-hidden="true">
+          <svg width="30" height="21" viewBox="0 0 34 24">
+            <ellipse cx="17" cy="12" rx="15" ry="10.5" fill="#EFE3CC" stroke="#A0722A" stroke-width="1.6"/>
+            <path d="M7 12 Q17 8 27 12" stroke="#4E2E1E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <path d="M9.5 12 L10.5 14 M12.5 11 L13.5 13.4 M15.5 10.6 L16.5 13 M18.5 10.6 L19.5 13 M21.5 11 L22.5 13.4 M24.5 12 L25 13.8" stroke="#4E2E1E" stroke-width="1.1" stroke-linecap="round"/>
+          </svg>
+          <svg width="24" height="17" viewBox="0 0 34 24" style="transform: rotate(-14deg);">
+            <ellipse cx="17" cy="12" rx="15" ry="10.5" fill="#EFE3CC" stroke="#C9907E" stroke-width="1.6"/>
+            <path d="M7 12 Q17 8 27 12" stroke="#4E2E1E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <path d="M10 12 L11 14 M13.5 11 L14.5 13.4 M17 10.6 L18 13 M20.5 11 L21.5 13.4 M24 12 L24.6 13.8" stroke="#4E2E1E" stroke-width="1.1" stroke-linecap="round"/>
+          </svg>
+          <svg width="30" height="21" viewBox="0 0 34 24" style="transform: rotate(10deg);">
+            <ellipse cx="17" cy="12" rx="15" ry="10.5" fill="#EFE3CC" stroke="#A0722A" stroke-width="1.6"/>
+            <path d="M7 12 Q17 8 27 12" stroke="#4E2E1E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <path d="M9.5 12 L10.5 14 M12.5 11 L13.5 13.4 M15.5 10.6 L16.5 13 M18.5 10.6 L19.5 13 M21.5 11 L22.5 13.4 M24.5 12 L25 13.8" stroke="#4E2E1E" stroke-width="1.1" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+      </div><!-- /content -->
     </div>
 
     <footer>
