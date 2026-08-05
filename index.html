@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kumenya Mucii — Njeri &amp; Mburu | RSVP</title>
-  <meta name="description" content="RSVP for Kumenya Mucii — Njeri & Mburu. Saturday, 26th September 2026 at Nyayo Estate, Embakasi." />
+  <title>Kumenya Mucii — Brenda &amp; Lawrence | RSVP</title>
+  <meta name="description" content="RSVP for Kumenya Mucii (Kuhanda Ithigi) — Brenda & Lawrence. Saturday, 26th September 2026 at Nyayo Estate, Embakasi." />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -135,7 +135,51 @@
       letter-spacing: 0.38em;
       text-transform: uppercase;
       color: var(--brown-soft);
-      margin-bottom: 18px;
+      margin-bottom: 14px;
+    }
+
+    /* ============ Event title at the very top ============ */
+    .event-title {
+      margin: 0 auto 22px;
+    }
+    .event-title h1 {
+      font-family: 'Great Vibes', cursive;
+      font-weight: 400;
+      font-size: clamp(3rem, 12vw, 4.6rem);
+      line-height: 0.95;
+      color: var(--brown);
+      text-shadow: 0 1px 1px rgba(245, 234, 208, 0.5);
+    }
+    .event-title .alt-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(1rem, 4vw, 1.3rem);
+      color: var(--gold);
+      margin-top: 2px;
+    }
+    .event-title .ceremony-top {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 0.86rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--brown-soft);
+      margin-top: 8px;
+    }
+    .title-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 12px auto 4px;
+      opacity: 0.9;
+    }
+    .title-divider .line {
+      width: 70px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+    .title-divider .line.right {
+      background: linear-gradient(90deg, var(--gold), transparent);
     }
 
     /* ============ Chocolate arch panel (like the invitation) ============ */
@@ -264,6 +308,80 @@
       max-width: 420px;
       margin: 28px auto 0;
     }
+
+    /* ============ Location / Google Maps + QR ============ */
+    .maps-section {
+      margin: 30px auto 8px;
+      max-width: 420px;
+      padding: 26px 22px 28px;
+      background: linear-gradient(180deg, rgba(160,114,42,0.10), rgba(201,144,126,0.07));
+      border: 1px solid rgba(160, 114, 42, 0.45);
+      border-radius: 12px;
+      position: relative;
+    }
+    .maps-section::before,
+    .maps-section::after {
+      content: '◆';
+      position: absolute;
+      top: -11px;
+      color: var(--rose);
+      background: var(--parchment);
+      padding: 0 6px;
+      font-size: 0.85rem;
+    }
+    .maps-section::before { left: 20px; }
+    .maps-section::after { right: 20px; }
+
+    .maps-section .maps-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--brown);
+      margin-bottom: 4px;
+    }
+    .maps-section .maps-sub {
+      font-size: 0.9rem;
+      color: var(--brown-soft);
+      margin-bottom: 16px;
+    }
+    .qr-frame {
+      width: 168px;
+      height: 168px;
+      margin: 0 auto 16px;
+      padding: 10px;
+      background: var(--ivory);
+      border: 2px solid var(--gold-light);
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(58, 33, 20, 0.22);
+    }
+    .qr-frame img { width: 100%; height: 100%; display: block; }
+
+    .maps-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      color: var(--ivory);
+      text-decoration: none;
+      background: linear-gradient(180deg, #5E3A26, var(--brown-deep));
+      border: 2px solid var(--gold-light);
+      border-radius: 60px;
+      padding: 13px 28px;
+      box-shadow: 0 6px 18px rgba(58, 33, 20, 0.35), inset 0 1px 0 rgba(245, 234, 208, 0.15);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.25s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .maps-btn:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(180deg, #6B4530, var(--brown));
+      box-shadow: 0 10px 26px rgba(58, 33, 20, 0.45), inset 0 1px 0 rgba(245, 234, 208, 0.15);
+    }
+    .maps-btn:active { transform: translateY(0); }
 
     /* ============ Counter ============ */
     .counter-block {
@@ -460,24 +578,28 @@
 
         <p class="kicker">You Are Warmly Invited To</p>
 
-        <!-- ======= Chocolate arch (mirrors the invitation) ======= -->
-        <div class="arch">
+        <!-- ======= Event title at the very top ======= -->
+        <div class="event-title">
           <h1>Kumenya Mucii</h1>
-          <p class="ceremony">Ceremony</p>
-
-          <div class="arch-divider" aria-hidden="true">
+          <p class="alt-name">Kuhanda Ithigi</p>
+          <div class="title-divider" aria-hidden="true">
             <span class="line"></span>
             <svg width="20" height="14" viewBox="0 0 34 24">
-              <ellipse cx="17" cy="12" rx="15" ry="10.5" fill="none" stroke="#C09A5E" stroke-width="2"/>
-              <path d="M7 12 Q17 8 27 12" stroke="#C09A5E" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <ellipse cx="17" cy="12" rx="15" ry="10.5" fill="none" stroke="#A0722A" stroke-width="2"/>
+              <path d="M7 12 Q17 8 27 12" stroke="#A0722A" stroke-width="2" fill="none" stroke-linecap="round"/>
             </svg>
             <span class="line right"></span>
           </div>
+          <p class="ceremony-top">Ceremony</p>
+        </div>
+
+        <!-- ======= Chocolate arch (mirrors the invitation) ======= -->
+        <div class="arch">
 
           <!-- Couple photo in gold beaded ring -->
           <div class="photo-ring">
             <div class="photo-frame">
-              <img src="couple.jpg" alt="Njeri and Mburu" loading="eager" />
+              <img src="couple.jpg" alt="Brenda and Lawrence" loading="eager" />
             </div>
           </div>
 
@@ -493,6 +615,12 @@
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F5EAD0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
               </span>
               <span>Nyayo Estate,<br/>Embakasi</span>
+            </div>
+            <div class="row">
+              <span class="icon" aria-hidden="true">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F5EAD0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+              </span>
+              <span>Dress Code:<br/>Smart Casual</span>
             </div>
           </div>
 
@@ -510,13 +638,20 @@
         <!-- ======= Warm invitation message ======= -->
         <p class="invite-msg">
           Dear Friends and Family, join us as we celebrate the beautiful union of
-          Njeri &amp; Mburu. Your presence and blessings mean everything to us.
+          Brenda &amp; Lawrence. Your presence and blessings mean everything to us.
         </p>
 
-        <!-- ======= Live counter ======= -->
-        <div class="counter-block">
-          <div class="counter-number" id="counter" aria-live="polite">—</div>
-          <div class="counter-label"><strong>people</strong> have confirmed attendance</div>
+        <!-- ======= Location / Google Maps + QR ======= -->
+        <div class="maps-section">
+          <p class="maps-title">Find Your Way</p>
+          <p class="maps-sub">Scan the code or tap the button for directions on the day</p>
+          <div class="qr-frame">
+            <img src="maps-qr.png" alt="Scan for Google Maps directions to the venue" loading="lazy" />
+          </div>
+          <a class="maps-btn" href="https://maps.app.goo.gl/L3NpcyUFivF21GeCA" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F5EAD0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Open in Google Maps
+          </a>
         </div>
 
         <button class="rsvp-btn" id="rsvpBtn" disabled>Loading…</button>
@@ -524,7 +659,7 @@
         <p class="error-msg" id="errorMsg"></p>
 
         <!-- Script signature like the invitation -->
-        <div class="names-script">Njeri &amp; Mburu</div>
+        <div class="names-script">Brenda &amp; Lawrence</div>
 
         <!-- cowrie shells decorative row -->
         <div class="deco-row" aria-hidden="true">
@@ -549,7 +684,7 @@
     </div>
 
     <footer>
-      Made with <span class="heart">♥</span> for the Kumenya Mucii celebration &middot; Njeri &amp; Mburu &middot; 2026
+      Made with <span class="heart">♥</span> for the Kumenya Mucii celebration &middot; Brenda &amp; Lawrence &middot; 2026
     </footer>
   </div>
 
@@ -579,7 +714,6 @@
 
     const LS_KEY = 'kumenya_mucii_rsvp_confirmed';
 
-    const counterEl = document.getElementById('counter');
     const btn = document.getElementById('rsvpBtn');
     const thankyouEl = document.getElementById('thankyou');
     const errorEl = document.getElementById('errorMsg');
@@ -633,14 +767,6 @@
     function setReadyUI() {
       btn.disabled = false;
       btn.textContent = '🎉 I Will Attend';
-    }
-
-    function bumpCounter(value) {
-      counterEl.textContent = value;
-      counterEl.classList.remove('bump');
-      // force reflow so the animation can replay
-      void counterEl.offsetWidth;
-      counterEl.classList.add('bump');
     }
 
     /* ---------- Notify backend (Netlify Function) ---------- */
@@ -703,7 +829,6 @@
     function init() {
       // Guard: config not yet filled in
       if (firebaseConfig.apiKey === 'FIREBASE_API_KEY') {
-        counterEl.textContent = '0';
         btn.textContent = '🎉 I Will Attend';
         btn.disabled = true;
         showError('Setup needed: replace the Firebase placeholder config in index.html.');
@@ -719,14 +844,8 @@
         return;
       }
 
-      // Live counter — updates in real-time for everyone
-      db.ref('counter').on('value', function (snap) {
-        const val = snap.val() || 0;
-        bumpCounter(val);
-      }, function (err) {
-        console.error('counter listener error:', err);
-        showError('Could not load the live counter.');
-      });
+      // NOTE: The attendance count is still tracked in the backend (to drive the
+      // every-5-RSVPs notification) but is intentionally NOT displayed on the card.
 
       // Fast check: localStorage flag
       let localFlag = false;
