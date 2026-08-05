@@ -92,12 +92,14 @@
       text-shadow: 0 1px 1px rgba(248, 244, 237, 0.6);
     }
     .subtitle {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-style: italic;
-      font-weight: 700;
-      font-size: clamp(1.2rem, 5vw, 1.7rem);
-      color: var(--rose-brown);
-      margin-top: 2px;
+      /* same font & colour as the "Kumenya Mucii" title above */
+      font-family: 'Great Vibes', cursive;
+      font-weight: 400;
+      font-size: clamp(2.4rem, 10vw, 3.7rem);
+      line-height: 0.98;
+      color: var(--brown-text);
+      text-shadow: 0 1px 1px rgba(248, 244, 237, 0.6);
+      margin-top: 0;
     }
     .celebration-of {
       font-family: 'Lato', sans-serif;
@@ -273,6 +275,15 @@
     .qr-frame img { width: 100%; height: 100%; display: block; }
 
     /* ============ RSVP button + confirmed box ============ */
+    .rsvp-deadline {
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(0.82rem, 2.6vw, 0.95rem);
+      letter-spacing: 0.03em;
+      color: var(--text-soft);
+      margin: 4px auto 14px;
+    }
+    .rsvp-deadline strong { color: var(--rose-brown); font-weight: 700; }
+
     .rsvp-btn {
       font-family: 'Lato', sans-serif;
       font-weight: 700;
@@ -422,7 +433,7 @@
         <!-- Header -->
         <p class="kicker">You Are Warmly Invited To</p>
         <h1 class="title">Kumenya Mucii</h1>
-        <p class="subtitle">Kuhanda Ithigi</p>
+        <p class="subtitle">&amp; Kuhanda Ithigi</p>
 
         <div class="heart-div" aria-hidden="true">
           <span class="l"></span>
@@ -499,6 +510,9 @@
             <img src="maps-qr.png" alt="Scan for Google Maps directions to the venue" loading="lazy" />
           </div>
         </div>
+
+        <!-- RSVP deadline -->
+        <p class="rsvp-deadline">Kindly RSVP by <strong>28th August 2026</strong></p>
 
         <!-- RSVP button / confirmed box -->
         <button class="rsvp-btn" id="rsvpBtn" disabled>Loading…</button>
@@ -588,7 +602,7 @@
       btn.hidden = false;
       btn.disabled = false;
       btn.classList.remove('loading');
-      btn.textContent = '🎉 I Will Attend';
+      btn.textContent = 'Click here to confirm attendance';
     }
 
     /* ---------- Notify backend (Netlify Function) ---------- */
@@ -644,7 +658,7 @@
     /* ---------- Initialise ---------- */
     function init() {
       if (firebaseConfig.apiKey === 'FIREBASE_API_KEY') {
-        btn.textContent = '🎉 I Will Attend';
+        btn.textContent = 'Click here to confirm attendance';
         btn.disabled = true;
         showError('Setup needed: replace the Firebase placeholder config in index.html.');
         return;
