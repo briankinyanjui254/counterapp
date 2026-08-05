@@ -51,30 +51,6 @@
         repeating-linear-gradient(90deg, transparent 0 3px, rgba(78,46,30,0.012) 3px 4px);
     }
 
-    /* ============ Tribal geometric top & bottom borders ============ */
-    .tribal-border {
-      width: 100%;
-      height: 24px;
-      background-color: var(--brown-deep);
-      background-image:
-        linear-gradient(135deg, var(--gold) 25%, transparent 25%),
-        linear-gradient(225deg, var(--gold) 25%, transparent 25%),
-        linear-gradient(45deg, var(--gold) 25%, transparent 25%),
-        linear-gradient(315deg, var(--gold) 25%, transparent 25%);
-      background-position: 12px 0, 12px 0, 0 0, 0 0;
-      background-size: 24px 24px;
-      background-repeat: repeat-x;
-      flex-shrink: 0;
-    }
-    .tribal-border.bottom { transform: rotate(180deg); }
-
-    .thin-gold-line {
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--rose-soft), var(--gold-light), var(--gold));
-      flex-shrink: 0;
-    }
-
     /* ============ Main card ============ */
     .wrapper {
       width: 100%;
@@ -480,9 +456,6 @@
 </head>
 <body>
 
-  <div class="tribal-border" aria-hidden="true"></div>
-  <div class="thin-gold-line" aria-hidden="true"></div>
-
   <div class="wrapper">
     <div class="card">
 
@@ -566,6 +539,12 @@
             </div>
             <div class="row">
               <span class="icon" aria-hidden="true">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F5EAD0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </span>
+              <span>Time:<br/>1pm onwards</span>
+            </div>
+            <div class="row">
+              <span class="icon" aria-hidden="true">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F5EAD0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
               </span>
               <span>Nyayo Estate,<br/>Embakasi</span>
@@ -589,10 +568,12 @@
           </svg>
         </div>
 
+        <!-- Script signature - couple names below photo -->
+        <div class="names-script">Brenda &amp; Lawrence</div>
+
         <!-- ======= Warm invitation message ======= -->
         <p class="invite-msg">
-          Dear Friends and Family, join us as we celebrate the beautiful union of
-          Brenda &amp; Lawrence. Your presence and blessings mean everything to us.
+          With hearts full of gratitude, we invite you to witness a beautiful milestone as our families come together in love, blessing &amp; tradition. Your presence will make our Kumenya Mucii &amp; Kuhanda Ithigi even more meaningful as we begin this new chapter together.
         </p>
 
         <!-- ======= Location / Google Maps + QR ======= -->
@@ -611,9 +592,6 @@
         <button class="rsvp-btn" id="rsvpBtn" disabled>Loading…</button>
         <p class="thankyou" id="thankyou"></p>
         <p class="error-msg" id="errorMsg"></p>
-
-        <!-- Script signature like the invitation -->
-        <div class="names-script">Brenda &amp; Lawrence</div>
 
         <!-- cowrie shells decorative row -->
         <div class="deco-row" aria-hidden="true">
@@ -641,9 +619,6 @@
       Made with <span class="heart">♥</span> for the Kumenya Mucii celebration &middot; Brenda &amp; Lawrence &middot; 2026
     </footer>
   </div>
-
-  <div class="thin-gold-line" aria-hidden="true"></div>
-  <div class="tribal-border bottom" aria-hidden="true"></div>
 
   <script>
     /* ================================================================
