@@ -56,7 +56,7 @@
          screen size. Colors follow the previous cream/brown design. */
       border: 18px solid transparent;
       border-image: url('border.svg') 48 round;
-      padding: 20px 18px 24px;
+      padding: 16px 16px 18px;
       text-align: center;
     }
     /* faint traditional tribal-triangle watermark, sits BEHIND all content */
@@ -81,12 +81,12 @@
       letter-spacing: 0.32em;
       text-transform: uppercase;
       color: var(--text-soft);
-      margin-bottom: 8px;
+      margin-bottom: 5px;
     }
     .title {
       font-family: 'Great Vibes', cursive;
       font-weight: 400;
-      font-size: clamp(2.4rem, 10vw, 3.7rem);
+      font-size: clamp(2rem, 8vw, 3rem);
       line-height: 0.98;
       color: var(--brown-text);
       text-shadow: 0 1px 1px rgba(248, 244, 237, 0.6);
@@ -106,7 +106,7 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--text-soft);
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
     /* heart divider */
@@ -115,7 +115,7 @@
       align-items: center;
       justify-content: center;
       gap: 9px;
-      margin: 8px auto;
+      margin: 5px auto;
     }
     .heart-div .l {
       width: 46px; height: 1px;
@@ -128,7 +128,7 @@
     .photo-ring {
       width: min(60vw, 236px);
       height: min(60vw, 236px);
-      margin: 14px auto 16px;
+      margin: 10px auto 12px;
       border-radius: 50%;
       padding: 7px;
       border: 1.5px dotted var(--border);
@@ -148,8 +148,8 @@
       display: flex;
       background: var(--brown-dark);
       border-radius: 16px;
-      padding: 18px 8px;
-      margin: 4px auto 18px;
+      padding: 14px 8px;
+      margin: 4px auto 12px;
       box-shadow: 0 10px 26px rgba(61,46,37,0.20);
     }
     .detail-col {
@@ -174,7 +174,7 @@
       background: var(--rose-icon);
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 3px 9px rgba(0,0,0,0.22);
-      margin-bottom: 11px;
+      margin-bottom: 8px;
     }
     .detail-col .lbl {
       font-family: 'Lato', sans-serif;
@@ -196,7 +196,7 @@
     /* ============ Names ============ */
     .names-script {
       font-family: 'Great Vibes', cursive;
-      font-size: clamp(2.4rem, 10vw, 3.7rem);
+      font-size: clamp(2rem, 8vw, 3rem);
       line-height: 1;
       color: var(--brown-text);
       margin-top: 4px;
@@ -206,10 +206,10 @@
     .invite-msg {
       font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(0.98rem, 3.3vw, 1.1rem);
-      line-height: 1.7;
+      line-height: 1.55;
       color: var(--brown-text);
       max-width: 460px;
-      margin: 6px auto 0;
+      margin: 4px auto 0;
     }
     .invite-msg .hl { color: #C9A996; font-weight: 600; }
 
@@ -218,9 +218,9 @@
       display: flex;
       align-items: center;
       gap: 18px;
-      margin: 20px auto 18px;
+      margin: 12px auto 12px;
       max-width: 500px;
-      padding: 18px 20px;
+      padding: 14px 18px;
       background: linear-gradient(180deg, rgba(184,150,109,0.08), rgba(201,169,150,0.05));
       border: 1px solid rgba(184,150,109,0.4);
       border-radius: 12px;
@@ -238,7 +238,7 @@
     .maps-sub {
       font-size: 0.86rem;
       color: var(--text-soft);
-      margin: 8px 0 14px;
+      margin: 5px 0 10px;
       line-height: 1.4;
     }
     .maps-btn {
@@ -268,7 +268,7 @@
       font-size: clamp(0.82rem, 2.6vw, 0.95rem);
       letter-spacing: 0.03em;
       color: var(--text-soft);
-      margin: 4px auto 14px;
+      margin: 6px auto 10px;
     }
     .rsvp-deadline strong { color: var(--rose-brown); font-weight: 700; }
 
@@ -307,32 +307,26 @@
     }
     .confirmed-box .check {
       flex-shrink: 0;
-      width: 46px; height: 46px;
+      width: 34px; height: 34px;
       border-radius: 50%;
       background: rgba(255,255,255,0.4);
       border: 2px solid var(--cream-light);
       display: flex; align-items: center; justify-content: center;
-      color: #fff; font-size: 1.4rem; font-weight: 700;
+      color: #fff; font-size: 1.1rem; font-weight: 700;
     }
-    .confirmed-box .ty-script {
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.9rem;
-      line-height: 1;
-      color: var(--brown-dark);
-    }
-    .confirmed-box .ty-caps {
+    .confirmed-box .ty-line {
       font-family: 'Lato', sans-serif;
       font-weight: 700;
-      font-size: 0.82rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      font-size: clamp(0.7rem, 3vw, 1.14rem);
+      letter-spacing: 0.03em;
+      line-height: 1.2;
       color: var(--brown-dark);
-      margin-top: 4px;
+      white-space: nowrap;
     }
     [hidden] { display: none !important; }
 
     .thankyou {
-      margin-top: 16px;
+      margin-top: 10px;
       font-family: 'Playfair Display', Georgia, serif;
       font-style: italic;
       font-size: 1.05rem;
@@ -348,9 +342,9 @@
 
     .celebrate {
       font-family: 'Great Vibes', cursive;
-      font-size: clamp(1.7rem, 7vw, 2.4rem);
+      font-size: clamp(1.6rem, 6vw, 2.1rem);
       color: var(--rose-brown);
-      margin-top: 22px;
+      margin-top: 12px;
       line-height: 1.1;
     }
 
@@ -379,17 +373,17 @@
 
     /* ===== Tablet ===== */
     @media (max-width: 768px) {
-      .card { border-width: 17px; padding: 22px 18px 26px; }
-      .photo-ring { width: min(56vw, 210px); height: min(56vw, 210px); }
-      .detail-bar { padding: 20px 6px; }
+      .card { border-width: 17px; padding: 16px 16px 20px; }
+      .photo-ring { width: min(52vw, 196px); height: min(52vw, 196px); }
+      .detail-bar { padding: 14px 6px; }
     }
 
     /* ===== Mobile ===== */
     @media (max-width: 520px) {
-      body { padding: 14px 8px 24px; }
-      .card { border-width: 13px; padding: 18px 12px 22px; }
-      .photo-ring { width: min(58vw, 180px); height: min(58vw, 180px); margin: 14px auto 18px; }
-      .detail-bar { padding: 16px 3px; border-radius: 13px; }
+      body { padding: 10px 8px 18px; }
+      .card { border-width: 13px; padding: 14px 12px 16px; }
+      .photo-ring { width: min(52vw, 168px); height: min(52vw, 168px); margin: 8px auto 10px; }
+      .detail-bar { padding: 12px 3px; border-radius: 13px; }
       .detail-col { padding: 0 2px; }
       .detail-col .ic { width: 30px; height: 30px; margin-bottom: 7px; }
       .detail-col .ic svg { width: 15px; height: 15px; }
@@ -406,7 +400,7 @@
     @media (max-width: 360px) {
       .detail-bar { padding: 14px 2px; }
       .detail-col .val { font-size: 0.66rem; }
-      .title { font-size: 2.8rem; }
+      .title, .names-script { font-size: 2.3rem; }
     }
   </style>
 </head>
@@ -503,10 +497,7 @@
         <button class="rsvp-btn" id="rsvpBtn" disabled>Loading…</button>
         <div class="confirmed-box" id="confirmedBox" hidden>
           <span class="check" aria-hidden="true">✓</span>
-          <div>
-            <p class="ty-script">Thank you</p>
-            <p class="ty-caps" id="confirmedText">for confirming attendance ♥</p>
-          </div>
+          <p class="ty-line" id="confirmedText">Thank you for confirming attendance ♥</p>
         </div>
         <p class="thankyou" id="thankyou"></p>
         <p class="error-msg" id="errorMsg"></p>
@@ -574,9 +565,9 @@
       btn.hidden = true;
       confirmedBox.hidden = false;
       if (isReturning) {
-        confirmedText.textContent = "for confirming attendance ♥";
+        confirmedText.textContent = "Thank you for confirming attendance ♥";
       } else {
-        confirmedText.textContent = "for confirming attendance ♥";
+        confirmedText.textContent = "Thank you for confirming attendance ♥";
         thankyouEl.textContent = "Asante! We can't wait to celebrate with you 🎉";
         thankyouEl.classList.add('show');
       }
