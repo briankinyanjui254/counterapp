@@ -59,21 +59,6 @@
       text-align: center;
     }
 
-    /* ============ Scattered cowrie-shell beads (from the invitation) ============ */
-    .bead {
-      position: absolute;
-      z-index: 2;
-      pointer-events: none;
-      user-select: none;
-      opacity: 0.96;
-      filter: drop-shadow(0 2px 3px rgba(61,46,37,0.28));
-    }
-    .bead img { width: 100%; display: block; }
-    .bead.b1 { width: 42px; bottom: 10px;  left: 8px;   transform: rotate(-20deg); }
-    .bead.b2 { width: 34px; bottom: 34px;  left: 42px;  transform: rotate(28deg); }
-    .bead.b3 { width: 42px; bottom: 10px;  right: 10px; transform: rotate(18deg); }
-    .bead.b4 { width: 34px; bottom: 34px;  right: 44px; transform: rotate(-24deg); }
-
     .content { position: relative; z-index: 4; }
 
     /* ============ Header ============ */
@@ -401,8 +386,6 @@
       .maps-divider { width: 70%; height: 1px; align-self: center; }
       .rsvp-btn { width: 100%; max-width: 320px; padding: 15px 18px; font-size: 1.02rem; }
       .confirmed-box { padding: 15px 16px; gap: 12px; }
-      .bead.b1, .bead.b3 { width: 30px; }
-      .bead.b2, .bead.b4 { width: 24px; }
     }
 
     /* ===== Very small phones ===== */
@@ -417,12 +400,6 @@
 
   <div class="wrapper">
     <div class="card">
-
-      <!-- Scattered cowrie-shell beads (from Invitation (1).png) -->
-      <span class="bead b1" aria-hidden="true"><img src="cowrie.svg" alt="" /></span>
-      <span class="bead b2" aria-hidden="true"><img src="cowrie.svg" alt="" /></span>
-      <span class="bead b3" aria-hidden="true"><img src="cowrie.svg" alt="" /></span>
-      <span class="bead b4" aria-hidden="true"><img src="cowrie.svg" alt="" /></span>
 
       <div class="content">
 
@@ -521,13 +498,6 @@
 
         <!-- Celebrate line -->
         <p class="celebrate">We can't wait to celebrate with you!</p>
-
-        <!-- decorative cowrie-shell row -->
-        <div class="deco-row" aria-hidden="true">
-          <img src="cowrie.svg" alt="" width="34" style="transform:rotate(-8deg)" />
-          <img src="cowrie.svg" alt="" width="40" />
-          <img src="cowrie.svg" alt="" width="34" style="transform:rotate(8deg)" />
-        </div>
 
         <footer>
           Made with <span class="heart">♥</span> for the Kumenya Mucii celebration &middot; Brenda &amp; Lawrence &middot; 2026
