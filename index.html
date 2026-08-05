@@ -57,7 +57,7 @@
       /* keep the card close to the reference frame's portrait ratio so the
          border/shells never squash when content is short */
       min-height: 0;
-      padding: 7% 9.5%;
+      padding: 7% 9.5% 7.5%;
       text-align: center;
     }
 
@@ -356,18 +356,22 @@
     }
 
     footer {
-      margin-top: 20px;
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
+      margin-top: 16px;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text-soft);
-      opacity: 0.75;
+      opacity: 0.8;
+      /* keep it narrow so it sits centered BETWEEN the two bottom cowrie shells */
+      max-width: 62%;
+      margin-left: auto;
+      margin-right: auto;
     }
     footer .heart { color: var(--rose-brown); }
 
     /* ===== Tablet ===== */
     @media (max-width: 768px) {
-      .card { padding: 7% 9%; }
+      .card { padding: 7% 9% 8%; }
       .photo-ring { width: min(56vw, 210px); height: min(56vw, 210px); }
       .detail-bar { padding: 20px 6px; }
     }
@@ -375,7 +379,7 @@
     /* ===== Mobile ===== */
     @media (max-width: 520px) {
       body { padding: 14px 8px 24px; }
-      .card { padding: 8% 8.5%; }
+      .card { padding: 8% 8.5% 10%; }
       .photo-ring { width: min(58vw, 180px); height: min(58vw, 180px); margin: 14px auto 18px; }
       .detail-bar { padding: 16px 3px; border-radius: 13px; }
       .detail-col { padding: 0 2px; }
@@ -501,9 +505,7 @@
         <!-- Celebrate line -->
         <p class="celebrate">We can't wait to celebrate with you!</p>
 
-        <footer>
-          Made with <span class="heart">♥</span> for the Kumenya Mucii celebration &middot; Brenda &amp; Lawrence &middot; 2026
-        </footer>
+        <footer>Brenda &amp; Lawrence &middot; 26<sup>th</sup> Sept 2026</footer>
 
       </div><!-- /content -->
     </div>
