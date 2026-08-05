@@ -59,8 +59,28 @@
       padding: 26px 22px 30px;
       text-align: center;
     }
+    /* faint traditional tribal-triangle watermark, sits BEHIND all content */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('pattern.svg');
+      background-size: 64px auto;
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: 1;
+    }
 
     .content { position: relative; z-index: 4; }
+
+    /* traditional Kikuyu shield emblem — its own centered space, never near text edges */
+    .shield-emblem {
+      display: block;
+      width: 82px;
+      height: auto;
+      margin: 16px auto 6px;
+      opacity: 0.96;
+    }
 
     /* ============ Header ============ */
     .kicker {
@@ -200,7 +220,7 @@
       max-width: 460px;
       margin: 6px auto 0;
     }
-    .invite-msg .hl { color: var(--brown-text); font-weight: 600; }
+    .invite-msg .hl { color: #C9A996; font-weight: 600; }
 
     /* ============ Find Your Way (maps + QR) ============ */
     .maps-section {
@@ -420,6 +440,9 @@
         </div>
 
         <p class="celebration-of">A Celebration of Family, Love &amp; Tradition</p>
+
+        <!-- Traditional Kikuyu shield emblem -->
+        <img class="shield-emblem" src="shield.svg" alt="" aria-hidden="true" />
 
         <!-- Couple photo -->
         <div class="photo-ring">

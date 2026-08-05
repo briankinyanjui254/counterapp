@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="96" viewBox="0 0 120 96">
+  <!-- crossed staves -->
+  <g stroke="#4A342A" stroke-width="3" stroke-linecap="round">
+    <line x1="18" y1="86" x2="102" y2="14"/>
+    <line x1="102" y1="86" x2="18" y2="14"/>
+  </g>
+  <g fill="#A67353">
+    <circle cx="18" cy="86" r="4"/><circle cx="102" cy="14" r="4"/>
+    <circle cx="102" cy="86" r="4"/><circle cx="18" cy="14" r="4"/>
+  </g>
+  <!-- shield body -->
+  <path d="M60 8 C74 20 84 22 92 22 C90 52 80 74 60 88 C40 74 30 52 28 22 C36 22 46 20 60 8 Z"
+        fill="#F3E9D7" stroke="#4A342A" stroke-width="3"/>
+  <!-- central vertical band -->
+  <path d="M60 12 C63 34 63 62 60 84 C57 62 57 34 60 12 Z" fill="#4A342A"/>
+  <!-- side patches -->
+  <path d="M42 30 C40 44 44 58 52 70 C46 54 46 42 48 30 Z" fill="#A67353"/>
+  <path d="M78 30 C80 44 76 58 68 70 C74 54 74 42 72 30 Z" fill="#A67353"/>
+  <!-- triangle accents -->
+  <polygon points="60,26 65,36 55,36" fill="#B8966D"/>
+  <polygon points="60,70 65,60 55,60" fill="#B8966D"/>
+</svg>
