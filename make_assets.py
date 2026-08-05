@@ -1,63 +1,92 @@
 #!/usr/bin/env python3
-"""Generate a tileable tribal border (9-slice border-image) + cowrie shell SVGs
-matching Invitation (1).png."""
+"""Generate a tileable tribal border (9-slice border-image) that replicates
+Invitation (2).png:
+  - top & bottom edges  -> zigzag of alternating solid triangles (thin line
+    above, thick line below)
+  - left & right edges  -> vertical column of nested triangles + solid diamonds
+  - continuous outer + inner frame lines, corner diamonds to mask joints
+"""
 
-S = 400          # svg canvas
-BAND = 46        # border-image slice thickness
-DARK = "#3F2513"   # outer line dark brown
-MED  = "#6E4A2E"   # triangles / medium brown
-LINE2 = "#8A6238"  # thin accent line
+N = 400          # svg canvas
+SLICE = 48       # border-image slice
+DARK = "#43281A" # main dark brown (lines + solids)
+MED  = "#6E4526" # medium brown (triangle fills)
 
-def tri(pts, fill):
-    p = " ".join(f"{x},{y}" for x, y in pts)
-    return f'<polygon points="{p}" fill="{fill}"/>'
+def poly(pts, fill, stroke=None, sw=0):
+    p = " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
+    s = f' stroke="{stroke}" stroke-width="{sw}"' if stroke else ""
+    return f'<polygon points="{p}" fill="{fill}"{s}/>'
 
-parts = []
-parts.append(f'<svg xmlns="http://www.w3.org/2000/svg" width="{S}" height="{S}" viewBox="0 0 {S} {S}">')
+parts = [f'<svg xmlns="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorials/SVG_from_scratch/Fills_and_strokes/svg_stroke_linejoin_example.png" width="{N}" height="{N}" viewBox="0 0 {N} {N}">']
 
-# ---- outer + inner frame lines ----
-parts.append(f'<rect x="5" y="5" width="{S-10}" height="{S-10}" fill="none" stroke="{DARK}" stroke-width="3.5" rx="4"/>')
-parts.append(f'<rect x="12" y="12" width="{S-24}" height="{S-24}" fill="none" stroke="{LINE2}" stroke-width="1.4" rx="3"/>')
-parts.append(f'<rect x="41" y="41" width="{S-82}" height="{S-82}" fill="none" stroke="{DARK}" stroke-width="2.4" rx="3"/>')
-parts.append(f'<rect x="47" y="47" width="{S-94}" height="{S-94}" fill="none" stroke="{LINE2}" stroke-width="1" rx="2"/>')
+# ---------- continuous frame lines (all 4 sides) ----------
+# very outer thin line
+parts.append(f'<rect x="4" y="4" width="{N-8}" height="{N-8}" fill="none" stroke="{DARK}" stroke-width="2.4" rx="3"/>')
+# band OUTER bounding line
+parts.append(f'<rect x="8" y="8" width="{N-16}" height="{N-16}" fill="none" stroke="{DARK}" stroke-width="2" rx="3"/>')
+# band INNER bounding line (thick)
+parts.append(f'<rect x="40" y="40" width="{N-80}" height="{N-80}" fill="none" stroke="{DARK}" stroke-width="3" rx="3"/>')
+# inner thin accent line
+parts.append(f'<rect x="46" y="46" width="{N-92}" height="{N-92}" fill="none" stroke="{DARK}" stroke-width="1" rx="2"/>')
 
-# ---- saw-tooth triangle band, period 40, between y=17 and y=35 ----
-P = 40
-outer, inner = 17, 35     # band edges
-for k in range(0, S // P):
-    x = k * P
-    # top edge: downward triangle
-    parts.append(tri([(x, outer), (x + P, outer), (x + P/2, inner)], MED))
-    # bottom edge: upward triangle
-    parts.append(tri([(x, S-outer), (x + P, S-outer), (x + P/2, S-inner)], MED))
-    # left edge: rightward triangle
-    parts.append(tri([(outer, x), (outer, x + P), (inner, x + P/2)], MED))
-    # right edge: leftward triangle
-    parts.append(tri([(S-outer, x), (S-outer, x + P), (S-inner, x + P/2)], MED))
+# ============ TOP & BOTTOM edges: zigzag triangles ============
+# band between y_top=13 (below outer line) and y_bot=37 (above inner line)
+P = 50
+yt, yb = 13, 37
+def h_zigzag(flip=False):
+    out = []
+    for k in range(0, N // P + 1):
+        x = k * P
+        if not flip:
+            # up triangle
+            out.append(poly([(x, yb), (x + 25, yb), (x + 12.5, yt)], MED))
+            # down triangle
+            out.append(poly([(x + 25, yt), (x + 50, yt), (x + 37.5, yb)], DARK))
+        else:
+            out.append(poly([(x, N - yb), (x + 25, N - yb), (x + 12.5, N - yt)], MED))
+            out.append(poly([(x + 25, N - yt), (x + 50, N - yt), (x + 37.5, N - yb)], DARK))
+    return out
 
-# ---- corner diamonds (mask the joints) ----
-for cx, cy in [(26, 26), (S-26, 26), (26, S-26), (S-26, S-26)]:
-    parts.append(tri([(cx, cy-11), (cx+11, cy), (cx, cy+11), (cx-11, cy)], DARK))
-    parts.append(tri([(cx, cy-6), (cx+6, cy), (cx, cy+6), (cx-6, cy)], "#F2E6CC"))
+# clip the zigzag to the top / bottom middle strips so it doesn't bleed into corners
+parts.append(f'<clipPath id="ctop"><rect x="{SLICE}" y="0" width="{N-2*SLICE}" height="{SLICE}"/></clipPath>')
+parts.append(f'<clipPath id="cbot"><rect x="{SLICE}" y="{N-SLICE}" width="{N-2*SLICE}" height="{SLICE}"/></clipPath>')
+parts.append('<g clip-path="url(#ctop)">' + "".join(h_zigzag(False)) + '</g>')
+parts.append('<g clip-path="url(#cbot)">' + "".join(h_zigzag(True)) + '</g>')
+
+# ============ LEFT & RIGHT edges: nested triangle + diamond ============
+# band between x=13 and x=37
+P2 = 64
+xl, xr = 13, 37
+def v_motif(right=False):
+    out = []
+    for k in range(0, N // P2 + 2):
+        y = k * P2
+        # nested right-pointing triangle (solid MED + cream notch look via DARK outline)
+        if not right:
+            out.append(poly([(xl, y + 3), (xl, y + 31), (xr, y + 17)], MED))
+            out.append(poly([(xl + 4, y + 11), (xl + 4, y + 23), (xr - 6, y + 17)], "#F3E9D7"))
+            # solid diamond
+            cy = y + 48
+            out.append(poly([(24, cy - 8), (31, cy), (24, cy + 8), (17, cy)], DARK))
+        else:
+            X = N - xl; XR = N - xr
+            out.append(poly([(X, y + 3), (X, y + 31), (XR, y + 17)], MED))
+            out.append(poly([(X - 4, y + 11), (X - 4, y + 23), (XR + 6, y + 17)], "#F3E9D7"))
+            cy = y + 48
+            cx = N - 24
+            out.append(poly([(cx, cy - 8), (cx - 7, cy), (cx, cy + 8), (cx + 7, cy)], DARK))
+    return out
+
+parts.append(f'<clipPath id="clft"><rect x="0" y="{SLICE}" width="{SLICE}" height="{N-2*SLICE}"/></clipPath>')
+parts.append(f'<clipPath id="crgt"><rect x="{N-SLICE}" y="{SLICE}" width="{SLICE}" height="{N-2*SLICE}"/></clipPath>')
+parts.append('<g clip-path="url(#clft)">' + "".join(v_motif(False)) + '</g>')
+parts.append('<g clip-path="url(#crgt)">' + "".join(v_motif(True)) + '</g>')
+
+# ============ corner diamonds (mask the joints) ============
+for cx, cy in [(24, 24), (N - 24, 24), (24, N - 24), (N - 24, N - 24)]:
+    parts.append(poly([(cx, cy - 12), (cx + 12, cy), (cx, cy + 12), (cx - 12, cy)], DARK))
+    parts.append(poly([(cx, cy - 6), (cx + 6, cy), (cx, cy + 6), (cx - 6, cy)], "#F3E9D7"))
 
 parts.append('</svg>')
 open("border.svg", "w").write("\n".join(parts))
-print("border.svg written, slice =", BAND)
-
-# --------------------------------------------------------------------------
-# Cowrie shell (bead) SVG — reusable symbol
-# --------------------------------------------------------------------------
-cowrie = '''<svg xmlns="https://i.etsystatic.com/20212866/r/il/4421cd/6742484306/il_300x300.6742484306_qaps.jpg" width="46" height="32" viewBox="0 0 46 32">
-  <ellipse cx="23" cy="16" rx="21" ry="14" fill="#F0E4CB" stroke="#B08A52" stroke-width="1.4"/>
-  <ellipse cx="23" cy="16" rx="21" ry="14" fill="url(#g)" opacity="0.5"/>
-  <defs><radialGradient id="g" cx="0.5" cy="0.35" r="0.7">
-     <stop offset="0" stop-color="#FFFDF7"/><stop offset="1" stop-color="#D8C199"/>
-  </radialGradient></defs>
-  <path d="M23 4 C24 10 24 22 23 28" stroke="#5B4327" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-  <g stroke="#8A6A3E" stroke-width="1.3" stroke-linecap="round">
-    <path d="M23 7 l-4 2 M23 10 l-4 2 M23 13 l-4 1.5 M23 16 l-4 1.5 M23 19 l-4 1.5 M23 22 l-4 2 M23 25 l-4 2"/>
-    <path d="M23 7 l4 2 M23 10 l4 2 M23 13 l4 1.5 M23 16 l4 1.5 M23 19 l4 1.5 M23 22 l4 2 M23 25 l4 2"/>
-  </g>
-</svg>'''
-open("cowrie.svg", "w").write(cowrie)
-print("cowrie.svg written")
+print("border.svg written, slice =", SLICE)
