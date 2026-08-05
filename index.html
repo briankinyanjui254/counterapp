@@ -383,52 +383,6 @@
     }
     .maps-btn:active { transform: translateY(0); }
 
-    /* ============ Counter ============ */
-    .counter-block {
-      margin: 28px auto 28px;
-      padding: 24px 20px 28px;
-      max-width: 400px;
-      background: linear-gradient(180deg, rgba(160,114,42,0.10), rgba(201,144,126,0.07));
-      border: 1px solid rgba(160, 114, 42, 0.45);
-      border-radius: 12px;
-      position: relative;
-    }
-    .counter-block::before,
-    .counter-block::after {
-      content: '◆';
-      position: absolute;
-      top: -11px;
-      color: var(--rose);
-      background: var(--parchment);
-      padding: 0 6px;
-      font-size: 0.85rem;
-    }
-    .counter-block::before { left: 20px; }
-    .counter-block::after { right: 20px; }
-
-    .counter-number {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-weight: 800;
-      font-size: clamp(3.2rem, 12vw, 4.6rem);
-      line-height: 1;
-      color: var(--brown);
-      transition: transform 0.25s ease;
-    }
-    .counter-number.bump { animation: bump 0.5s ease; }
-    @keyframes bump {
-      0% { transform: scale(1); }
-      40% { transform: scale(1.22); color: var(--gold); }
-      100% { transform: scale(1); }
-    }
-
-    .counter-label {
-      margin-top: 8px;
-      font-size: 1rem;
-      letter-spacing: 0.02em;
-      color: var(--brown-soft);
-    }
-    .counter-label strong { color: var(--gold); font-weight: 700; }
-
     /* ============ RSVP Button ============ */
     .rsvp-btn {
       font-family: 'Lato', sans-serif;
