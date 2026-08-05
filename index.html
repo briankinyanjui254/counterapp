@@ -86,20 +86,18 @@
     .title {
       font-family: 'Great Vibes', cursive;
       font-weight: 400;
-      font-size: clamp(3.2rem, 13vw, 5rem);
+      font-size: clamp(2.4rem, 10vw, 3.7rem);
       line-height: 0.98;
       color: var(--brown-text);
       text-shadow: 0 1px 1px rgba(248, 244, 237, 0.6);
     }
     .subtitle {
-      /* same font & colour as the "Kumenya Mucii" title above */
-      font-family: 'Great Vibes', cursive;
-      font-weight: 400;
-      font-size: clamp(2.4rem, 10vw, 3.7rem);
-      line-height: 0.98;
-      color: var(--brown-text);
-      text-shadow: 0 1px 1px rgba(248, 244, 237, 0.6);
-      margin-top: 0;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: clamp(1.2rem, 5vw, 1.7rem);
+      color: var(--rose-brown);
+      margin-top: 2px;
     }
     .celebration-of {
       font-family: 'Lato', sans-serif;
@@ -198,7 +196,7 @@
     /* ============ Names ============ */
     .names-script {
       font-family: 'Great Vibes', cursive;
-      font-size: clamp(2.6rem, 11vw, 4rem);
+      font-size: clamp(2.4rem, 10vw, 3.7rem);
       line-height: 1;
       color: var(--brown-text);
       margin-top: 4px;
@@ -262,17 +260,7 @@
     }
     .maps-btn:hover { transform: translateY(-2px); background: #5A4034; }
     .maps-btn:active { transform: translateY(0); }
-    .maps-divider { width: 1px; align-self: stretch; background: rgba(184,150,109,0.35); }
-    .qr-frame {
-      width: 132px; height: 132px;
-      flex-shrink: 0;
-      padding: 8px;
-      background: var(--cream-light);
-      border: 1.5px solid var(--border);
-      border-radius: 9px;
-      box-shadow: 0 5px 15px rgba(61,46,37,0.15);
-    }
-    .qr-frame img { width: 100%; height: 100%; display: block; }
+
 
     /* ============ RSVP button + confirmed box ============ */
     .rsvp-deadline {
@@ -433,7 +421,6 @@
         <!-- Header -->
         <p class="kicker">You Are Warmly Invited To</p>
         <h1 class="title">Kumenya Mucii</h1>
-        <p class="subtitle">&amp;</p>
         <p class="subtitle">Kuhanda Ithigi</p>
 
         <div class="heart-div" aria-hidden="true">
@@ -493,7 +480,7 @@
 
         <!-- Invitation message -->
         <p class="invite-msg">
-          With hearts full of gratitude, we invite you to witness a beautiful milestone as our families come together in love, blessing &amp; tradition. Your presence will make our <span class="hl">Kumenya Mucii</span> &amp; <span class="hl">Kuhanda Ithigi</span> even more meaningful as we begin this new chapter together.
+          Join us as our families come together in love &amp; tradition to celebrate our <span class="hl">Kumenya Mucii</span> &amp; <span class="hl">Kuhanda Ithigi</span>. We'd be honoured to share this special day with you.
         </p>
 
         <!-- Find Your Way -->
@@ -506,10 +493,7 @@
               Open in Google Maps
             </a>
           </div>
-          <div class="maps-divider" aria-hidden="true"></div>
-          <div class="qr-frame">
-            <img src="maps-qr.png" alt="Scan for Google Maps directions to the venue" loading="lazy" />
-          </div>
+
         </div>
 
         <!-- RSVP deadline -->
@@ -520,8 +504,8 @@
         <div class="confirmed-box" id="confirmedBox" hidden>
           <span class="check" aria-hidden="true">✓</span>
           <div>
-            <p class="ty-script">Thank you!</p>
-            <p class="ty-caps" id="confirmedText">You've already confirmed attendance ♥</p>
+            <p class="ty-script">Thank you</p>
+            <p class="ty-caps" id="confirmedText">for confirming attendance ♥</p>
           </div>
         </div>
         <p class="thankyou" id="thankyou"></p>
@@ -590,9 +574,9 @@
       btn.hidden = true;
       confirmedBox.hidden = false;
       if (isReturning) {
-        confirmedText.textContent = "You've already confirmed attendance ♥";
+        confirmedText.textContent = "for confirming attendance ♥";
       } else {
-        confirmedText.textContent = "Your attendance is confirmed ♥";
+        confirmedText.textContent = "for confirming attendance ♥";
         thankyouEl.textContent = "Asante! We can't wait to celebrate with you 🎉";
         thankyouEl.classList.add('show');
       }
