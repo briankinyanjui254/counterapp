@@ -564,13 +564,7 @@
     function setConfirmedUI(isReturning) {
       btn.hidden = true;
       confirmedBox.hidden = false;
-      if (isReturning) {
-        confirmedText.textContent = "Thank you for confirming attendance ♥";
-      } else {
-        confirmedText.textContent = "Thank you for confirming attendance ♥";
-        thankyouEl.textContent = "Asante! We can't wait to celebrate with you 🎉";
-        thankyouEl.classList.add('show');
-      }
+      confirmedText.textContent = "Thank you for confirming attendance ♥";
     }
 
     function setReadyUI() {
