@@ -674,6 +674,77 @@
 
     btn.addEventListener('click', handleRsvp);
     init();
+
+    /* ---------- Device-ID helper (for host verification only) ----------
+       A guest who already confirmed can visit the site with #myid or ?myid
+       (e.g. .../?myid) on the SAME device + browser they used to RSVP.
+       This shows their exact device code so they can send it to the host,
+       who checks it against the "fingerprints" list in Firebase. Regular
+       guests never see this — it only appears when the flag is present. */
+    function showMyDeviceId() {
+      var fp = getDeviceFingerprint();
+
+      var overlay = document.createElement('div');
+      overlay.setAttribute('style',
+        'position:fixed;inset:0;z-index:9999;display:flex;align-items:center;' +
+        'justify-content:center;padding:22px;background:rgba(61,46,37,0.72);' +
+        'font-family:Lato,sans-serif;');
+
+      var box = document.createElement('div');
+      box.setAttribute('style',
+        'max-width:420px;width:100%;background:#F8F4ED;border-radius:16px;' +
+        'padding:26px 22px;text-align:center;box-shadow:0 18px 52px rgba(61,46,37,0.4);' +
+        'border:2px solid #A67353;');
+
+      box.innerHTML =
+        '<p style="font-family:\'Playfair Display\',Georgia,serif;font-weight:700;' +
+        'font-size:1.1rem;color:#3D2E25;margin:0 0 6px;">Your Device Code</p>' +
+        '<p style="font-size:0.86rem;color:#6b5545;margin:0 0 16px;line-height:1.4;">' +
+        'Send this code to the host so they can confirm your RSVP.</p>' +
+        '<div id="fpValue" style="font-family:monospace;font-weight:700;font-size:1.5rem;' +
+        'letter-spacing:0.04em;color:#A67353;background:#fff;border:1.5px dashed #A67353;' +
+        'border-radius:12px;padding:16px 12px;margin:0 0 16px;word-break:break-all;">' + fp + '</div>' +
+        '<button id="fpCopy" style="font-family:Lato,sans-serif;font-weight:700;font-size:1rem;' +
+        'color:#F8F4ED;background:#4A342A;border:none;border-radius:60px;padding:13px 28px;' +
+        'cursor:pointer;width:100%;max-width:260px;">Copy code</button>' +
+        '<p style="font-size:0.72rem;color:#8a7461;margin:14px 0 0;line-height:1.4;">' +
+        'Use the same phone/computer &amp; browser you confirmed with.</p>';
+
+      overlay.appendChild(box);
+      document.body.appendChild(overlay);
+
+      var copyBtn = document.getElementById('fpCopy');
+      copyBtn.addEventListener('click', function () {
+        var done = function () {
+          copyBtn.textContent = 'Copied ✓';
+          setTimeout(function () { copyBtn.textContent = 'Copy code'; }, 2000);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(fp).then(done).catch(function () {
+            fallbackCopy(); done();
+          });
+        } else {
+          fallbackCopy(); done();
+        }
+        function fallbackCopy() {
+          var r = document.createRange();
+          r.selectNode(document.getElementById('fpValue'));
+          var sel = window.getSelection();
+          sel.removeAllRanges(); sel.addRange(r);
+          try { document.execCommand('copy'); } catch (e) {}
+          sel.removeAllRanges();
+        }
+      });
+
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) overlay.remove();
+      });
+    }
+
+    if (location.hash.indexOf('myid') !== -1 ||
+        location.search.indexOf('myid') !== -1) {
+      showMyDeviceId();
+    }
   </script>
 </body>
 </html>
