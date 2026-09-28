@@ -1,4 +1,13 @@
 node_modules/
 .netlify/
+
+# Environment variables — never commit
 .env
+.env.*
+!.env.example
+
+# Firebase service account / admin SDK keys — never commit
 serviceAccountKey.json
+*firebase-adminsdk*.json
+*-firebase-adminsdk-*.json
+kumenya-mucii-rsvp-*.json

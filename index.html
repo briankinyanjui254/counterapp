@@ -575,19 +575,6 @@
       btn.textContent = 'Click here to confirm attendance';
     }
 
-    /* ---------- Notify backend (Netlify Function) ---------- */
-    async function callNotify(newCount) {
-      try {
-        await fetch('/.netlify/functions/notify', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ counter: newCount })
-        });
-      } catch (err) {
-        console.warn('notify function call failed:', err);
-      }
-    }
-
     /* ---------- RSVP click handler ---------- */
     async function handleRsvp() {
       if (alreadyConfirmed || submitting || !db) return;
@@ -615,8 +602,6 @@
         alreadyConfirmed = true;
         btn.classList.remove('loading');
         setConfirmedUI(false);
-
-        callNotify(newCount);
       } catch (err) {
         console.error('RSVP failed:', err);
         submitting = false;
